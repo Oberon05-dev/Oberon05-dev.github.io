@@ -1,0 +1,329 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: Lato;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  }
+
+  body {
+  color: #222;
+  background: #222;
+  font: 100% system-ui;
+}
+
+p1{
+    font-size: 18px;
+}
+
+  .btn-primary
+  {
+    background-color: white;
+    border-color: white;
+    color: black;
+  }
+
+  .btn-primary:hover
+  {
+    background-color: rgb(117, 117, 255);
+    border-color: rgb(117, 117, 255)
+  }
+
+  .form-control
+  {
+    color: black;
+  }
+
+  /*navbar colors*/
+  .navbar-custom 
+  {
+    background-color: rgb(117, 117, 255); 
+  }
+
+  .navbar-custom .navbar-brand, .navbar-custom .navbar-text, .nav-item, .nav-link 
+  {
+    color: white;
+  }
+
+  /*Columns beacuse fuck u*/
+
+  .bg-custom
+  {
+    background: rgb(26, 26, 26);
+    padding: 10px 50px 50px;
+    border-radius: 10px;
+    box-shadow: 0.125em 0px 0px rgb(117, 117, 255), -0.125em 0px 0px rgb(117, 117, 255);
+  }
+
+  .hed
+  {
+    border-bottom:2px solid rgb(117, 117, 255);
+    text-shadow:0 2px 6px 0 hsl(0deg 0% 0% / 20%);
+
+    text-align: center;
+  }
+
+  .col-4 {
+    position:absolute;
+    left: 55%;
+    top: 31%;
+  }
+
+
+  .a {
+    border: none;
+    background-color: inherit;
+    padding: 14px 28px;
+    font-size: 18px;
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    right: 12px;
+    top: 75px;
+    transition: transform .2s;
+  }
+
+  .a:hover 
+  {
+    transform: scale(1.03);
+  }
+
+  .b {
+    border: none;
+    background-color: inherit;
+    padding: 14px 28px;
+    font-size: 18px;
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    right: 26px;
+    top: 215px;
+    transition: transform .2s;
+  }
+
+  .b:hover {
+    transform: scale(1.03);
+  }
+
+  .c {
+    border: none;
+    background-color: inherit;
+    padding: 14px 28px;
+    font-size: 18px;
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    right: 65px;
+    top: 350px;
+    transition: transform .2s;
+  }
+
+  .c:hover {transform: scale(1.03);}
+
+  .text-block1 {
+    width: 115px;
+    height: 50px;
+    position: absolute;
+    bottom: 7px;
+    right: 376px;
+    background-color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+    opacity: 0;
+    transition: 0.2s;
+  }
+
+  .text-block1:hover
+  {
+    opacity: 0.9;
+  }
+
+  .text-block2 {
+    width: 115px;
+    height: 50px;
+    position: absolute;
+    bottom: 7px;
+    right: 258px;
+    background-color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+    opacity: 0;
+    transition: 0.2s;
+  }
+
+  .text-block2:hover
+  {
+    opacity: 0.9;
+  }
+
+  ul {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+
+    color: white;
+  }
+
+  .aname
+  {
+    color: white;
+    text-decoration: none;
+    text-align: left;
+
+    padding-top: 2px;
+    padding-bottom: 10px;
+
+    display: inline-block;
+    width: 200px;
+
+    transition: 0.3s;
+  }
+
+  .aname2
+  {
+    color: white;
+    text-decoration: none;
+    text-align: left;
+
+    padding-top: 2px;
+    padding-bottom: 10px;
+
+    display: inline-block;
+    width: 200px;
+
+    transition: 0.3s;
+  }
+
+  .noe
+  {
+    color: white;
+    text-decoration: none;
+    text-align: left;
+    display: inline-block;
+
+    padding: 2px 2px 2px 2px;
+
+    background-color: rgb(117, 117, 255);
+
+    border: rgb(117, 117, 255) 1px solid;
+    border-radius: 1000px;
+
+    cursor: default;
+  }
+
+  .aname:hover
+  {
+    text-decoration: none;
+    color: rgb(117, 117, 255);
+  }
+
+  .aname2:hover
+  {
+    text-decoration: none;
+    color: rgb(117, 117, 255);
+  }
+
+
+  .T-link
+  {
+    text-decoration: none;
+    color: rgb(117, 117, 255);
+
+    transition: 0.3s;
+  }
+
+  .T-link:hover
+  {
+    color:white
+  }
+
+  .imge
+  {
+    width: 115px;
+    height: 165px;
+    overflow: hidden;
+    justify-content: left;
+    display: block;
+    display:inline-flex;
+    border-radius: 2px;
+  }
+
+  .mphoto
+  {
+    height: 150px;
+    border: solid rgb(117, 117, 255) 2px;;
+  }
+
+  .mtittle
+  {
+    text-decoration: none;
+    color: white;
+    font-size: 35px;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .mtittle:hover
+  {
+    color:rgb(117, 117, 255);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow:grey;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(117, 117, 255) 2px;
+  }
+
+  .animeList{
+    width: 100%;
+    text-align: center;
+  }
+
+  th{
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  td{
+    padding: 10px;
+    border-top: rgb(117, 117, 255) 2px solid;
+  }
+
+  .animeEp{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    border-right: rgb(117, 117, 255) 2px solid;
+    font-size: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .animeLink{
+    color: white;
+    border-right: rgb(117, 117, 255) 2px solid;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+
+  }
+  .animeLink:hover{
+    background-color: rgb(117, 117, 255);
+    color: white
+  }
