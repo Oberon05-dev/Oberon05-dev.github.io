@@ -1,107 +1,165 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
-    <title>Animepedia</title>
-    <link rel="shortcut icon" href="../imgs/A.png">
+  <title>Animepedia</title>
+  <link rel="shortcut icon" href="../imgs/A.png">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href = "https://fonts.googleapis.com/css2?family=Lato&display=swap" rel = "stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
-    <script>
-        fetch('anime.json')
+  <script>
+    fetch('anime.json')
       .then(response => response.json())
       .then(data => {
         const tableBody = document.getElementById('anime-table-body');
         data.anime.forEach(anime => {
           const row = document.createElement('tr');
-          const cell = document.createElement('td');
-          const episodesCell = document.createElement('td');
-          const seasonCell = document.createElement('td');
-          const link = document.createElement('a');
-          const text = document.createElement('p1');
+          row.className = "row";
 
-          seasonCell.textContent = anime.seasons || 'N/A';
+          // Pierwsza kolumna dla guzików i tytułu
+          const buttonCell = document.createElement('td');
+          const coverCell = document.createElement('td');
+          const titleCell = document.createElement('td');
 
-          text.className = "animeEp";
-          text.textContent = anime.episodes || 'N/A';
-          episodesCell.appendChild(text)
+          buttonCell.className = "buttonCell";
+          coverCell.className = "coverCell";
+          titleCell.className = "titleCell";
 
-          link.href = anime.name+'.html';
-          link.className = "animeLink";
-          link.textContent = anime.name;
-          cell.appendChild(link);
-          row.appendChild(cell);
+          // Dodanie guzików
+          anime.seasons.forEach((season, index) => {
+            const seasonButton = document.createElement('button');
+            seasonButton.textContent = `Sezon ${index + 1}`;
+            seasonButton.className = "seasonButton";
+            seasonButton.addEventListener('click', function () {
+              anime.currentSeasonIndex = index;
+              displayAnime(anime, coverCell, titleCell);
+            });
+            buttonCell.appendChild(seasonButton);
+          });
 
-          row.appendChild(episodesCell);
-          row.appendChild(seasonCell);
+          // Dodanie tytułu
+          displayAnime(anime, coverCell, titleCell);
 
+          // Dodanie kolumn do wiersza
+          row.appendChild(buttonCell);
+          row.appendChild(coverCell);
+          row.appendChild(titleCell);
+
+          // Dodanie wiersza do tabeli
           tableBody.appendChild(row);
         });
       })
       .catch(error => {
         console.error(error);
       });
-    </script>
+
+    function displayAnime(anime, coverCell, titleCell) {
+      const currentSeason = anime.seasons[anime.currentSeasonIndex];
+      titleCell.innerHTML = ''; // Wyczyść zawartość komórki z tytułem
+      coverCell.innerHTML = '';
+
+      // Dodanie obrazka i linku do tytułu
+      const image = document.createElement('img');
+      image.className = "animeCover";
+      image.src = currentSeason.cover;
+      image.alt = currentSeason.name;
+      image.width = 150;
+      image.height = 210;
+      coverCell.appendChild(image);
+
+      const link = document.createElement('a');
+      link.href = currentSeason.link + '.html';
+      link.className = "animeLink";
+      link.textContent = currentSeason.name;
+
+      const episodes = document.createElement('p');
+      episodes.className = "listElements";
+      episodes.textContent = "liczba odcinków: " + currentSeason.episodes;
+
+      const transatedEpisodes = document.createElement('p');
+      transatedEpisodes.className = "listElements";
+      transatedEpisodes.textContent = "liczba odcinków przetłumaczonych: " + currentSeason.translated;
+
+      const aired = document.createElement('p');
+      aired.className = "listElements";
+      aired.textContent = "Wyemitowano: " + currentSeason.aired;
+
+      const joinedGenres = currentSeason.genres.join(', ');
+      const genres = document.createElement('p');
+      genres.className = "listElements";
+      genres.textContent = "Gatunki: " + joinedGenres;
+
+      const studios = document.createElement('p');
+      studios.className = "listElements";
+      studios.textContent = "Studio: " + currentSeason.studios;
+
+      titleCell.appendChild(link);
+      titleCell.appendChild(episodes);
+      titleCell.appendChild(transatedEpisodes);
+      titleCell.appendChild(aired);
+      titleCell.appendChild(genres);
+      titleCell.appendChild(studios);
+
+      // Dodanie obsługi kliknięcia na obrazku
+      image.addEventListener('click', function () {
+        window.location.href = currentSeason.link + '.html'; // Przekierowanie użytkownika na odpowiedni link
+      });
+    }
+  </script>
 
 </head>
 
 <body>
-        
-    <!--navbar-->
-    <nav class="navbar navbar-expand-sm navbar-custom navbar-dark">
 
-        <div class="container-fluid">
+  <!--navbar-->
+  <nav class="navbar navbar-expand-sm navbar-custom navbar-dark">
 
-            <a class="navbar-brand" href="./index.html">ANIMEPEDIA</a>
+    <div class="container-fluid">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <a class="navbar-brand" href="./index.html">ANIMEPEDIA</a>
 
-                <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
 
-            </button>
+        <span class="navbar-toggler-icon"></span>
 
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      </button>
 
-                <ul class="navbar-nav">
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
 
-                    <li class="nav-item">
+        <ul class="navbar-nav">
 
-                    <a class="nav-link" href="anime.html">Lista anime</a>
+          <li class="nav-item">
 
-                    </li> 
+            <a class="nav-link" href="anime.html">Lista anime</a>
 
-                </ul>
+          </li>
 
-            </div>
+        </ul>
 
-        </div>
+      </div>
 
-    </nav>
+    </div>
 
-    <div class="container p-4 my-5 pt-2 bg-custom text-white text-center">
+  </nav>
 
-        <h1>Lista Anime</h1>
+  <div class="container p-4 my-5 pt-2 bg-custom text-white text-center">
 
-        <table id="anime-table" class="animeList">
-            <thead>
-              <tr>
-                <th>Nazwa</th>
-                <th>Liczba odcinków</th>
-                <th>Liczba sezonów</th>
-              </tr>
-            </thead>
-            <tbody id="anime-table-body"></tbody>
-          </table>
+    <h1>Lista Anime</h1>
 
-    
+    <table id="anime-table" class="animeList">
+      <tbody id="anime-table-body"></tbody>
+    </table>
+
+
 
 </body>
-    
+
 </html>
