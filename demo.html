@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamiczna Strzałka z Inputów</title>
+  <style>
+    body {
+      background: #f2f4ff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 60px;
+    }
+
+    .wrap {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .box {
+      width: 300px;
+      padding: 30px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    .box label {
+      display: block;
+      margin: 12px 0 4px;
+    }
+
+    .box input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    svg {
+      position: absolute;
+      top: 90px;
+      left: 180px;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    path {
+      fill: none;
+      stroke: #7f3bff;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      filter: drop-shadow(0 0 4px #a96bff);
+      transition: stroke-dashoffset 1s ease-out;
+    }
+
+    .active path {
+      stroke-dashoffset: 0;
+    }
+
+    .arrowhead {
+      fill: #7f3bff;
+      transform: scale(0);
+      transform-origin: center;
+      transition: transform 0.5s ease-out 0.6s;
+    }
+
+    .active .arrowhead {
+      transform: scale(1);
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="box">
+    <label for="name">Nazwa produktu</label>
+    <input type="text" id="name">
+    <label for="plu">Kod PLU</label>
+    <input type="text" id="plu">
+  </div>
+
+  <svg width="500" height="100">
+    <path d="M0,40 C150,0 150,80 300,40" />
+    <polygon class="arrowhead" points="300,40 290,35 290,45" />
+  </svg>
+
+  <div class="box">
+    <label for="date">Data partii</label>
+    <input type="date" id="date">
+  </div>
+</div>
+
+<script>
+  const nameInput = document.getElementById('name');
+  const pluInput = document.getElementById('plu');
+  const svg = document.querySelector('svg');
+
+  function checkInputs() {
+    const name = nameInput.value.trim();
+    const plu = pluInput.value.trim();
+
+    if (name && plu) {
+      svg.classList.add('active');
+    } else {
+      svg.classList.remove('active');
+    }
+  }
+
+  nameInput.addEventListener('input', checkInputs);
+  pluInput.addEventListener('input', checkInputs);
+</script>
+
+</body>
+</html>

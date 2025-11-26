@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/x-icon" href="9201346.ico">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <script src="main.js" defer></script>
+  <script src="JavaScript/dat/dat.create.js" defer></script>
+  <script src="JavaScript/dat/dat.delete.js" defer></script>
+  <script src="JavaScript/dat/dat.edit.js" defer></script>
+
+  <script src="JavaScript/dat/dat.update.js" defer></script>
+  <script src="JavaScript/ui/ui.init.js" defer></script>
+  <script src="JavaScript/ui/ui.listeners.js" defer></script>
+  <script src="JavaScript/ui/ui.js" defer></script>
+  <script src="JavaScript/ui/ui.context.js" defer></script>
+
+  <script src="JavaScript/history.js" defer></script>
+  <script src="JavaScript/keyboard.js" defer></script>
+  <script src="JavaScript/io.js" defer></script>
+  <script src="JavaScript/validation.js" defer></script>
+
+  <script src="JavaScript/dat.js" defer></script>
+  <script src="JavaScript/utils.js" defer></script>
+  <script src="JavaScript/debug.js" defer></script>
+  <title>Daty Przydatności</title>
+</head>
+
+<body>
+  <div id="top-shadow-bar"></div>
+  <label>
+    <input type="checkbox" id="debug-toggle" />
+    Tryb Zaanwansowany
+  </label>
+  <div id="debug-panel">
+
+    <div id="terminal">
+      <h3>Konsola</h3>
+      <div id="terminal-output">
+
+      </div>
+      <button onclick="wyczyscTerminal()" id="clear-button">Wyczyść</button>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="tabele">
+    <div class="lewa">
+
+      <div id="formularz-produktu">
+        <h2>Dodaj nowy produkt</h2>
+        <label>
+          Nazwa:
+          <input type="text" id="nowa-nazwa" placeholder="Wpisz nazwę" />
+        </label><br>
+        <label>
+          PLU:
+          <input type="text" id="nowe-plu" placeholder="Wpisz kod PLU" />
+        </label><br>
+        <div class="product-buttons">
+          <button id="dodaj-produkt-btn">Dodaj produkt</button>
+          <button id="usun-produkt-btn">Usuń zaznaczony produkt</button>
+        </div>
+        <div class="sort-switch" id="sorter">
+          <input type="radio" name="sort" id="sort-added" value="added" checked>
+          <label for="sort-added">Dodawanie</label>
+
+          <input type="radio" name="sort" id="sort-expiry" value="expiry">
+          <label for="sort-expiry">Termin</label>
+
+          <span class="thumb" aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <h1>Lista Produktów</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Nazwa</th>
+            <th>PLU</th>
+          </tr>
+        </thead>
+        <tbody id="produkty"></tbody>
+      </table>
+    </div>
+
+    <div class="srodek">
+      <div id="pliki">
+        <h2 style="margin-top: 0;">Plik</h2>
+        <button id="open-editable">Otwórz plik</button>
+        <button id="save-file">Zapisz</button>
+        <div id="opened-path" style="font-size:12px;opacity:.7;margin-top:.25rem"></div>
+      </div>
+
+      <div id="wyszukiwarka">
+        <h2>Wyszukiwarka</h2>
+        <input type="text" id="search" placeholder="Nazwa/PLU" />
+      </div>
+    </div>
+
+    <div class="prawa">
+      <div id="dodawanie-partii">
+        <h2>Dodaj partię</h2>
+        <label>
+          Data:
+          <input type="date" id="partia-data" />
+        </label><br>
+        <div class="batch-buttons">
+          <button id="dodaj-partie-btn">Dodaj partię</button>
+          <button id="usun-partie">Usuń zaznaczoną date</button>
+        </div>
+        <div style="font-size:12px;opacity:.7;margin-top:.25rem;min-height: 36px;margin-top:8px;margin-bottom: 8px">
+          Tip: jeżeli w polach <strong>Nazwa/PLU</strong> masz coś wpisane,
+          partia trafi do tego produktu, nawet gdy zaznaczony jest inny.
+        </div>
+
+      </div>
+      <h1>Szczegóły produktu</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Zgłoszone</th>
+            <th>Dni do końca</th>
+          </tr>
+        </thead>
+        <tbody id="partie"></tbody>
+      </table>
+    </div>
+  </div>
+  <div id="context-menu" class="context-menu" aria-hidden="true" hidden>
+    <div class="context-menu__header" data-role="title"></div>
+    <div class="context-menu__items" data-role="items"></div>
+  </div>
+  <div id="notifications"></div>
+</body>
