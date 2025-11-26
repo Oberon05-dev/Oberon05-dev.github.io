@@ -11,7 +11,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
     rel="stylesheet">
+
   <script src="main.js" defer></script>
+
   <script src="JavaScript/dat/dat.create.js" defer></script>
   <script src="JavaScript/dat/dat.delete.js" defer></script>
   <script src="JavaScript/dat/dat.edit.js" defer></script>
@@ -30,6 +32,9 @@
   <script src="JavaScript/dat.js" defer></script>
   <script src="JavaScript/utils.js" defer></script>
   <script src="JavaScript/debug.js" defer></script>
+
+  <script type="module" src="firebase.js" defer></script>
+
   <title>Daty Przydatności</title>
 </head>
 
@@ -99,6 +104,10 @@
         <h2 style="margin-top: 0;">Plik</h2>
         <button id="open-editable">Otwórz plik</button>
         <button id="save-file">Zapisz</button>
+
+        <button id="cloud-load-btn">Wczytaj z chmury</button>
+        <button id="cloud-save-btn">Zapisz do chmury</button>
+
         <div id="opened-path" style="font-size:12px;opacity:.7;margin-top:.25rem"></div>
       </div>
 

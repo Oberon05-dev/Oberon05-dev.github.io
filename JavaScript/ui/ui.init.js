@@ -13,6 +13,8 @@ App.ui.init.cacheObj = function cacheObj () {
     App.object.btn.AddBatch = document.getElementById("dodaj-partie-btn");
     App.object.btn.OpenFile = document.getElementById("open-editable");
     App.object.btn.SaveFile = document.getElementById("save-file");
+    App.object.btn.cloudLoad = document.getElementById("cloud-load-btn");
+    App.object.btn.cloudSave = document.getElementById("cloud-save-btn");
     App.object.btn.DeleteProduct = document.getElementById("usun-produkt-btn");
     App.object.btn.DeleteBatch = document.getElementById("usun-partie");
 
@@ -45,6 +47,8 @@ App.ui.init.bindEvents = function() {
   B.DeleteBatch?.addEventListener("click", App.dat.delete.batch);
   B.OpenFile?.addEventListener("click", App.io.openEditableFile);
   B.SaveFile?.addEventListener("click", App.io.saveToFile);
+  B.cloudLoad.addEventListener("click", App.io.loadFromCloud);
+  B.cloudSave.addEventListener("click", App.io.saveToCloud);
 
   // to do ui listiners
   const searchBar = App.object.input.Search
