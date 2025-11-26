@@ -45,29 +45,23 @@ App.io = App.io || {};
 //  Wczytywanie z chmury
 // ------------------------
 App.io.loadFromCloud = async function () {
-  try {
-    const ref = doc(db, "shops", SHOP_ID);
-    const snap = await getDoc(ref);
+  const ref = doc(db, "shops", SHOP_ID);
+  const snap = await getDoc(ref);
 
-    if (snap.exists()) {
-      const data = snap.data();
+  if (snap.exists()) {
+    const data = snap.data();
 
-      App.state.products = Array.isArray(data.products) ? data.products : [];
+    App.state.products = data.products || [];
+    App.state.knownNames = data.knownNames || {};
 
-      console.log("🔥 Wczytano dane z chmury:", App.state.products);
-    } else {
-      console.log("⚠️ Dokument nie istnieje – start od pustej listy");
-      App.state.products = [];
-    }
-
-    // Odśwież tabelę po wczytaniu
-    if (App.object?.table?.Products && App.object?.table?.Batch) {
-      App.ui.renderTable("product", App.object.table.Products, App.object.table.Batch, App.state.products);
-    }
-  } catch (err) {
-    console.error("Błąd przy loadFromCloud:", err);
+  } else {
+    App.state.products = [];
+    App.state.knownNames = {};  
   }
+
+  App.ui.renderTable("product", App.object.table.Products, App.object.table.Batch, App.state.products);
 };
+
 
 
 // ------------------------
@@ -78,9 +72,11 @@ App.io.saveToCloud = async function () {
     const ref = doc(db, "shops", SHOP_ID);
 
     await setDoc(ref, {
-      products: App.state.products,
-      updatedAt: new Date().toISOString()
+    products: App.state.products,
+    knownNames: App.state.knownNames,
+    updatedAt: new Date().toISOString()
     }, { merge: true });
+
 
     console.log("💾 Dane zapisane do chmury!");
     alert("Zapisano do chmury! ✔");
