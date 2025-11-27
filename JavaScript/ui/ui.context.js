@@ -56,6 +56,19 @@ App.ui.context.ProductItems = {
   ]
 };
 
+App.ui.context.inputItems = {
+  label: "Szybkie akcje",
+  items: [
+    { 
+        id: "Paste", 
+        icon: "📋", 
+        label: "Wklej", 
+        description: "", 
+        action: () => App.utils.pasteFromClipboard(),
+    }
+  ]
+};
+
 App.ui.context.init = function (clientX, clientY, type){
     if (App.ui.context.initialized) return;
 

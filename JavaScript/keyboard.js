@@ -7,15 +7,26 @@ App.keyboard.init = function() {
     document.addEventListener("contextmenu", (event) => {
         event.preventDefault();
         const hoveredElement = document.elementFromPoint(event.clientX, event.clientY);
+
+        // console.log(hoveredElement.classList);
         
-        if (hoveredElement.tagName != 'TD') {
+        if (hoveredElement.tagName != 'TD' && hoveredElement.tagName != "INPUT") {
             App.ui.context.init(event.clientX, event.clientY, App.ui.context.defaultItems);
             return;
         } if (hoveredElement.classList == "pr" || hoveredElement.classList == "bh") {
             App.ui.context.privateEvent = event;
             App.ui.context.init(event.clientX, event.clientY, App.ui.context.ProductItems);
             return;
+        } if (hoveredElement.tagName == "INPUT" || hoveredElement.tagName == "TEXTAREA") {
+            App.ui.context.privateEvent = event;
+            App.ui.context.init(
+                event.clientX,
+                event.clientY,
+                App.ui.context.inputItems
+            );
+            return;
         }
+
 
         
     });

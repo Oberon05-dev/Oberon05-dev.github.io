@@ -97,3 +97,22 @@ App.utils.setSortMode = function (mode) {
     );
   }
 };
+
+App.utils.pasteFromClipboard = async function () {
+    try {
+        const text = await navigator.clipboard.readText();
+        if (!text) return;
+
+        const target = App.ui.context.privateEvent?.target;
+        if (!target) return;
+
+        if (target.tagName === "INPUT" || target.tagName === "TEXTAREA") {
+            target.value = text;
+            target.dispatchEvent(new Event("input")); // aktualizacja UI
+            App.ui.notify("Wklejono zawartość")
+        }
+
+    } catch (err) {
+        console.error("Clipboard paste error:", err);
+    }
+};
