@@ -29,19 +29,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // ======================================
-// ID sklepu
-// ======================================
-
-function getCurrentShopId() {
-  const el = App.object.input.ShopPicker;
-  
-  return el ? el.value : "sklep1";
-}
-
-// to nie może być const
-const SHOP_ID = getCurrentShopId();
-
-// ======================================
 // Integracja z Twoim App.io
 // ======================================
 
@@ -52,7 +39,7 @@ App.io = App.io || {};
 //  Wczytywanie z chmury
 // ------------------------
 App.io.loadFromCloud = async function () {
-  const ref = doc(db, "shops", shopId);
+  const ref = doc(db, "shops", App.stateshopId);
   const snap = await getDoc(ref);
 
   if (snap.exists()) {
@@ -76,7 +63,7 @@ App.io.loadFromCloud = async function () {
 // ------------------------
 App.io.saveToCloud = async function () {
   try {
-    const ref = doc(db, "shops", SHOP_ID);
+    const ref = doc(db, "shops", App.state.shopId);
 
     await setDoc(ref, {
     products: App.state.products,
