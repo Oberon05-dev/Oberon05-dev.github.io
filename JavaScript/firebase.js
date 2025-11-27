@@ -34,9 +34,11 @@ const db = getFirestore(app);
 
 function getCurrentShopId() {
   const el = App.object.input.ShopPicker;
+  
   return el ? el.value : "sklep1";
 }
 
+// to nie może być const
 const SHOP_ID = getCurrentShopId();
 
 // ======================================
@@ -50,7 +52,7 @@ App.io = App.io || {};
 //  Wczytywanie z chmury
 // ------------------------
 App.io.loadFromCloud = async function () {
-  const ref = doc(db, "shops", SHOP_ID);
+  const ref = doc(db, "shops", shopId);
   const snap = await getDoc(ref);
 
   if (snap.exists()) {

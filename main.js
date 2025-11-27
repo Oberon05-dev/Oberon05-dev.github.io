@@ -7,6 +7,7 @@ const App = {
     fileHandle: null,
     sortMode: "added",
     selectedTable: "left",
+    shopId: "sklep1",
   },
   object:{
     btn: {},
