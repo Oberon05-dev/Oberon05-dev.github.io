@@ -29,9 +29,14 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // ======================================
-// ID sklepu (można rozszerzyć później)
+// ID sklepu
 // ======================================
-const SHOP_ID = "sklep1";
+
+function getCurrentShopId() {
+    return App.object.input.ShopPicker.value;
+}
+
+const SHOP_ID = getCurrentShopId();
 
 // ======================================
 // Integracja z Twoim App.io
@@ -39,7 +44,6 @@ const SHOP_ID = "sklep1";
 
 window.App = window.App || {};
 App.io = App.io || {};
-
 
 // ------------------------
 //  Wczytywanie z chmury

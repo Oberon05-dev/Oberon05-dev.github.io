@@ -110,6 +110,7 @@ App.utils.pasteFromClipboard = async function () {
             target.value = text;
             target.dispatchEvent(new Event("input")); // aktualizacja UI
             App.ui.notify("Wklejono zawartość")
+            App.history.capture("wklejenie");
         }
 
     } catch (err) {

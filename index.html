@@ -99,11 +99,17 @@
     <div class="srodek">
       <div id="pliki">
         <h2 style="margin-top: 0;">Plik</h2>
-        <button id="open-editable">Otwórz plik</button>
-        <button id="save-file">Zapisz</button>
+        <button style="display: none;" id="open-editable">Otwórz plik</button>
+        <button style="display: none;" id="save-file">Zapisz</button>
 
-        <button id="cloud-load-btn">Wczytaj z chmury</button>
-        <button id="cloud-save-btn">Zapisz do chmury</button>
+        <button style="display: none;" id="cloud-load-btn">Wczytaj z chmury</button>
+        <button id="cloud-save-btn">Zapisz</button>
+
+        <select id="shop-picker">
+            <option value="sklep1">Inmedio</option>
+            <option value="sklep2">1Minute</option>
+        </select>
+
 
         <div id="opened-path" style="font-size:12px;opacity:.7;margin-top:.25rem"></div>
       </div>

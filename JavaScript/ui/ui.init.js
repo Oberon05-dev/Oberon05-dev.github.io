@@ -21,6 +21,7 @@ App.ui.init.cacheObj = function cacheObj () {
     App.object.btn.SortByAdded = document.getElementById("sort-added");
     App.object.btn.SortByExpiry = document.getElementById("sort-expiry");
 
+    App.object.input.ShopPicker = document.getElementById("shop-picker");
     App.object.input.Plu = document.getElementById("nowe-plu");
     App.object.input.ProductName = document.getElementById("nowa-nazwa");
     App.object.input.BatchDate = document.getElementById("partia-data");
@@ -40,6 +41,7 @@ App.ui.init.cacheObj = function cacheObj () {
 App.ui.init.bindEvents = function() {
   const B = App.object.btn;
   const C = App.object.custom;
+  const I = App.object.input;
 
   B.AddProduct?.addEventListener("click", App.dat.create.product);
   B.AddBatch?.addEventListener("click", App.dat.create.batch);
@@ -82,6 +84,20 @@ App.ui.init.bindEvents = function() {
     C.Files?.classList.toggle("is-stuck", stuck);
     C.SearchBox.classList.toggle("is-stuck", stuck);
   };
+
+  if (I.ShopPicker) {
+    I.ShopPicker.addEventListener("change", () => {
+        const selected = shopPicker.value;
+
+        localStorage.setItem("selectedShop", selected);
+
+        App.state.products = [];
+
+        App.io.loadFromCloud();
+        App.ui.renderTable("product", App.object.table.Products, App.object.table.Batch, []);
+    });
+  }
+
   window.addEventListener("scroll", toggleChrome, { passive: true });
   toggleChrome();
 };

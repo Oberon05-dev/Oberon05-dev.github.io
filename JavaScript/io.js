@@ -151,6 +151,17 @@ App.io.saveToExport = function(filename, dataObj) {
   loguj(`⬇️ Zapisano plik w folderze export/: ${filename}`);
 };
 
+App.io.restoreSelectedShop = function () {
+    const savedShop = localStorage.getItem("selectedShop");
+    const shopPicker = document.getElementById("shop-picker");
+
+    if (!shopPicker) return;
+
+    if (savedShop && shopPicker.querySelector(`option[value="${savedShop}"]`)) {
+        shopPicker.value = savedShop;
+    }
+};
+
 
 App.io.ensurePermission = async function ensurePermission(handle, write = false) {
   if (!handle || !handle.queryPermission) return false;

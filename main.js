@@ -48,5 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
   App.ui.init.cacheObj();
   App.ui.init.bindEvents();
   App.keyboard.init();
+  App.io.restoreSelectedShop();
   App.io.loadFromCloud();
 });
