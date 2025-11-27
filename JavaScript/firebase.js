@@ -33,7 +33,8 @@ const db = getFirestore(app);
 // ======================================
 
 function getCurrentShopId() {
-    return App.object.input.ShopPicker.value;
+  const el = App.object.input.ShopPicker;
+  return el ? el.value : "sklep1";
 }
 
 const SHOP_ID = getCurrentShopId();
