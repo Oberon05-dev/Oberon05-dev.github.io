@@ -87,7 +87,7 @@ App.ui.init.bindEvents = function() {
 
   if (I.ShopPicker) {
     I.ShopPicker.addEventListener("change", () => {
-        const selected = I.shopPicker.value;
+        const selected = I.ShopPicker.value;
 
         localStorage.setItem("selectedShop", selected);
 
