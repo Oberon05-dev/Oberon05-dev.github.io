@@ -39,7 +39,7 @@ App.io = App.io || {};
 //  Wczytywanie z chmury
 // ------------------------
 App.io.loadFromCloud = async function () {
-  const ref = doc(db, "shops", App.stateshopId);
+  const ref = doc(db, "shops", App.state.shopId);
   const snap = await getDoc(ref);
 
   if (snap.exists()) {
